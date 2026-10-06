@@ -102,3 +102,68 @@ All 35 original worked examples and all 25 answer-key items were recomputed. The
 ## 6. Build
 
 `source/` contains the Markdown source, the figure script and the numbering and post-processing scripts. The output .docx keeps the original header and footer, passes OOXML schema validation, and the 71-page PDF rendering was inspected page by page.
+
+---
+
+# Second review: *Chapter_9_Final_Publication_Copy.docx*
+
+I read the revised chapter in full and recomputed every number. The check scripts are in `source/publication_copy_review/` (`c1.py` to `c3.py`).
+
+## A. Numerical verification
+
+Recomputed:
+- Examples 9.1 to 9.43, including the four-wire and ZVR phasor cases, the pq calculation, both zero-power DVR roots, the UPQC-P/Q/S and left-shunt cases, the APF sizing, the IEC summation and the CRF economics.
+- All 28 answer-key items.
+- The derived quantities quoted in the text:
+  - the Fig. 9.38 minima (3450 VA at 36.87°; 3132 VA at 10.49°);
+  - the Fig. 9.58 bound (6.485 mH, 4.266 kHz);
+  - the synthetic TDD percentiles (4.669 % and 5.207 % with `default_rng(519)`);
+  - the reduced-model THD values.
+
+All agree except:
+
+| Location | Problem | Correction |
+|---|---|---|
+| Example 9.28 | \|Zs+ZF\| = \|0.04+j0.35\| = 0.3523, printed 0.3506; \|Zs+ZF+K\| = \|1.04+j0.35\| = 1.097, printed 1.078; background term 0.01/1.097 = 0.0091, printed 0.0093 | Corrected; the conclusions (0.059 pu, at most 0.019 pu, about two-thirds reduction, 1.9 % rating) were already right |
+| Sec. 9.4.8, Fig. 9.30 text | Said the AC export "approaches" the ideal 4.8 kW and −3.2 kW. Re-simulating the stated model (ZOH, 50 μs) gives mean exports of 5.04 kW and −3.46 kW, because H(s) lags 5° at 50 Hz and turns the injection toward the lagging current | The text now states about 5.0 kW and −3.5 kW and gives the reason |
+
+## B. Text that referred to earlier drafts
+
+These sentences mentioned an earlier draft and would have confused a reader of the published book. Each was rewritten as a self-contained comparison or deleted:
+- the "former 700-to-644 V window" (Example 9.1);
+- the "former 150-to-142.5 V window" (Example 9.19);
+- the "invented ±2 kW bound" (Sec. 9.5.7);
+- "no universal 25% crossover" (Sec. 9.8.3).
+
+The duplicated 95 %-efficiency sentence in Example 9.16 was also removed.
+
+## C. Literature check
+
+**Confirmed:**
+- IEC 61000-4-30:2025, edition 4, with its July 2026 corrected version;
+- the IEEE 519-2022 current and voltage tables, the even-harmonic rule and the statistical multipliers;
+- the IEC TR 61000-3-6 summation exponents;
+- the Duke Power DVR (Anderson SC, 12.47 kV, 1996);
+- the UPQC, DVR, DSTATCOM and active-filter references;
+- the 2026 review papers (titles, authors and venues).
+
+**Corrected:**
+- **IEEE 1159-2019 voltage imbalance:** the 2019 edition gives 0.5 to 5 % for negative-sequence imbalance. The value 0.5 to 2 % is from the 2009 edition. Table 9.4 has been updated.
+- **Reference [34]:** no Journal of Power Electronics 2010 paper with the cited title could be found. It is replaced by the matching journal paper on line-interactive DVR sag detection: B. Bae, J. Lee, J. Jeong and B. Han, IEEE Trans. Power Del., vol. 25, no. 4, pp. 2702-2709, 2010.
+
+**Please check:**
+- the end page of Woodley et al. (1999), which is 1186 in the chapter but 1185 in one secondary source;
+- the article numbers of the two 2026 Elsevier papers ([30], [31]), which could not be opened from this environment.
+
+## D. Figures and formatting
+
+All 60 figures were checked against their equations. Changes:
+- **Fig. 9.33 redrawn:** the shared DC capacitor had been drawn on the feeder-2 AC line.
+- **Section 9.9.8:** its heading was body text and is now a level-3 heading. Figures 9.58 to 9.60 and their captions now use the figure and caption styles.
+- **Run-in subheadings:** made consistently italic, the chapter's original style.
+- **"Solution." labels:** made consistently bold.
+- **Table 9.17:** rows put in equation order.
+
+## E. Wording
+
+Ten repetitive "universal / not proof / not universal" qualifiers were rewritten as specific statements. No technical content was removed. There are no em dashes. The .docx passes OOXML validation. The 88-page PDF was inspected, including every page with a changed figure or heading.
