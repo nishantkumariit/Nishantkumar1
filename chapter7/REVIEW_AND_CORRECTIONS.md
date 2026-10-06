@@ -81,3 +81,67 @@ This log covers the review of *Chapter_7_Series_FACTS_Controllers_Final.docx* (G
   4. runs `post7.py` (Table 7.8 widths);
   5. runs `schemafix.py`.
 - The output passes OOXML validation and renders to 46 pages. Every changed page was inspected.
+
+---
+
+# Second review: *Chapter_7_Series_FACTS_Controllers_Publication_Revised.docx*
+
+The revised chapter keeps most corrections of the first review and adds new material:
+- rewritten paragraphs (about 170 changed lines);
+- an angle-reference table;
+- a closed-form TCSC waveform section;
+- worked-example extensions;
+- four new references;
+- 25 redrawn figures.
+
+I compared it paragraph by paragraph with the previously verified version, recomputed every new number, checked all 25 new figures against the governing equations, verified the new references online where possible, and read the whole chapter once more at the end. The final file is built from the revised document by `source/revised_review/build7b.sh`.
+
+## 1. Verification of the new material
+
+- **Waveform formulas:** the closed-form TCSC conduction-interval expressions (y, t and the Fourier integral) agree with my independent analytic solution, and with Equation (7.16).
+- **Example 7.33 at boost 2:**
+  - branch RMS currents 1852, 1707 and 1614 A;
+  - capacitor-voltage THD 16.20%, 14.77% and 13.63%;
+  - individual-thyristor RMS 1206.7 A.
+- **Example 7.36:** device RMS 511.55 A and branch loss 26.17 kW.
+- **Example 7.24, Case B:** currents 1494.29, 1660.32 and 2490.49 A; 79.70 kV; 595.44 Mvar; third harmonic 49.7% of the fundamental.
+- **Example 7.25:** a lone module at 45° gives 0.1363 Ω.
+- **Example 7.37:** reactive injections −20.26 Mvar at each bus.
+- **Example 7.42:** saturated current 978.09 A.
+- **Delay roots:** 12.66% and 9.83%; the 1 Hz mode falls below 5% at 188 ms.
+- **P-V noses (Fig. 7.4):** 0.82, 1.17 and 1.64 pu at 0.647 pu voltage.
+- **Figures:** all 25 redrawn figures agree with the equations and the example values (phasor geometry, equal-area angles, GCSC and TCSC waveforms, harmonic curves, routing and headroom, relay geometry, resistance screen, delay damping).
+
+## 2. Corrections made
+
+| Location | Problem | Correction |
+|---|---|---|
+| Example 7.11 note | Says the converter term moves the boundary to "about 59%". With the converter term now specified for Fig. 7.31, R_c(f) = −0.004(f/50)⁴, the boundary is k = 61.9%, and the redrawn figure crosses zero there | "about 62%" |
+| Section 7.4.6 | Third harmonic at β = 25° given as 17.2% of I_mX_C and 10.7% of the fundamental | 17.3% and 10.8% |
+| Table 7.3, Rourkela-Raipur | Date removed, with a note that the supplier page does not date commissioning | 2004, India's first TCSC (Hitachi Energy reference page); reference [26] updated |
+| New angle-reference table | Unnumbered, unstyled, without borders, and placed under the 7.2 GCSC heading although it covers all devices | Now Table 7.2, styled like the other tables, moved to the end of 7.1.7 and cited; later tables renumbered 7.3 to 7.9 |
+| Section 7.7 intro | The research-gap table was no longer cited | Citation restored (Table 7.6) |
+| Table 7.7 | One cell in a larger font | Normalized |
+| Several paragraphs | Notation and wording slips: "provides numerical values beside this derivation through the cross-reference", "genuinely excluded", "12.6635% … printed as 12.7%", a repeated statement of 15.15 Ω and 0.88 Ω, "XC" as plain text, a duplicated "Figure 7.21 shows" pointer | Rewritten |
+| Conventions and the 7.7 intro | "UG path … PG study" | Plain wording |
+
+## 3. Writing and flow
+
+The revision had added one or more disclaimers to most paragraphs: "universal" 13 times, "guarantee" 4 times, and repeated "not proof", "illustrative" and "must not" phrasing. Each qualification was correct, but the stacking made the text defensive and machine-like. I rewrote 21 paragraphs and one caption so that each qualification is stated once, in plain technical language, and no technical content was removed. The final text has no "universal" or "guarantee", and no em dashes.
+
+## 4. References
+
+- **Confirmed:**
+  - Rourkela-Raipur (Hitachi Energy, installed 2004, first TCSC in India);
+  - Imperatriz (Hitachi Energy, TCSC commissioning 1999);
+  - Krommydas et al. (2025), Pattabiraman (2025), and the CIGRE 2024/2026 papers, from the first review.
+- **Please check before print:**
+  - Reference [23], Ministry annual report 2005-06, pp. 49-50 (Kanpur-Ballabhgarh test commissioning);
+  - Reference [24], Svenska Kraftnät report 2005 (Stöde).
+
+  I could not open either document from here; the URLs look plausible.
+- **Numbering order:** references [23] to [26] are numbered out of first-citation order in Table 7.3 (24, 25, 23, 26). Renumber them if the publisher requires citation order.
+
+## 5. Build
+
+The final file passes full OOXML validation and renders to 58 pages. Every changed page was inspected.
