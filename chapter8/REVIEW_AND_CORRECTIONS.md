@@ -61,3 +61,76 @@ Fifteen references were added and checked: Renz 1999; Yang et al. 2016; Wang et 
 ## 5. Build
 
 `source/` contains the Markdown source, the figure script (`figs.py`) and the numbering and post-processing scripts. The output .docx passes OOXML schema validation, and the PDF rendering (50 pages) was inspected page by page.
+
+---
+
+# Second review: *Chapter_8_Final_Publication_Copy.docx*
+
+I read the revised chapter sentence by sentence against the previous final version and recomputed every number, including all new simulation results. The source scripts for this round are in `source/publication_copy_review/` (`chk1.py` to `chk4.py` reproduce every check below).
+
+## A. Numerical verification
+
+All examples (8.1 to 8.43), all answer-key items (8.1 to 8.17) and every quoted model output were recomputed independently. Everything agrees to the stated precision except two values, both corrected:
+
+| Location | Problem | Correction |
+|---|---|---|
+| Example 8.36(c) | P0 = 3(127.0)² sin 25°/50 = 408.98 MW, printed 409.1 MW | 409.0 MW |
+| Example 8.40(d) | Total ideal THD = √(2V²rms/A1² − 1) = 5.4532 %, printed 5.4512 % | 5.4532 % |
+
+New model results confirmed by direct simulation or exact solution:
+- **Series-resonant SSFCL (Fig. 8.26):** I integrated the stated circuit equations. The limited peak is 2.440 kA and the prospective peak is 14.964 kA, both matching the text.
+- **Biased bridge (Fig. 8.28):** prefault 1.000 kA peak, lagging by 4.0115°. Halving the 2 μs step changes the maximum current by 0.008 %, which supports the "less than 0.01 %" claim.
+- **TCVL energization (Fig. 8.34):**
+  - The no-clamp response (64/63)cos θ − (127/63)cos 8θ is exact.
+  - The clamp energies 4.097 (h = 1.7) and 6.807 (h = 1.3) are reproduced.
+- **Delayed impedance (Fig. 8.38, Example 8.19):**
+  - Crossings 903.93, 1598.19 and 2165.92 Hz.
+  - Angular separations 60.66°, 11.68° and 91.59°.
+  - Delay thresholds 157.41 and 314.83 μs.
+  - Lambert-W dominant roots −228.22 ± j10346.42 and −3454.90 ± j7658.96 s⁻¹.
+  - All of these are reproduced, but only with L_f = 1 mH and K_p = 15 Ω. Those two values were not stated anywhere, so they are now given in the text, the caption and the figure.
+- **Other results:**
+  - IPFC Example 8.32: ρ1 = 27.60°, P1pq = 0.19053 pu, and the two ρ2 roots with their line-2 powers.
+  - Lossy-line Example 8.27.
+  - IPC inverse Eqs. (8.19) and (8.20), which back-substitute to B1 = −1, B2 = +1.
+  - Fourier coefficients of Example 8.40.
+  - AC versus DC comparison in Example 8.41.
+
+Earlier correction revisited honestly: my first review gave 13.2° for Example 8.41(b). The revised chapter's 0.46 rad (26.356°) is the correct value for equal path powers at a fixed corridor angle, and it is retained.
+
+## B. Literature check
+
+These items were confirmed from the named sources:
+- **IEC 60909-0:2026:** edition 3.0, 23 July 2026, superseding the 2016 edition.
+- **Plattsburgh APST:** end of June 1998; 75 Ω inductors raised summer transfer from 105 to 140 MW (Lemay et al., IEEE Canadian Review no. 34).
+- **Nanjing West Ring:** three 60 MVA MMCs; the shunt converter is on the 35 kV bus; in service December 2015.
+- **Suzhou 500 kV:** end of 2017.
+- **EirGrid SmartValve pilot:** 2016, Cashla–Ennis 110 kV.
+- **IPTO FARCROSS:** October 2021, Nea Santa–Iasmos 150 kV.
+- **Marcy CSC:** STATCOM April 2001; complete July 2004; two 100 MVA converters, a 200 MVA shunt transformer and two 100 MVA series transformers.
+- **Bibliographic details:** the DOIs and details of Sun et al. (PSCE 2004), Radmanesh et al. (2016), Yuan et al. (DPFC, 2010), Monteiro et al. (2011), Mandal et al. (2025), Keshavarzi et al. (arXiv:2511.14209), Yang et al. (4.16 kV test setup), Alajrash et al. (2024), CIGRE Electra 213 / TB 242 and US 8519682 B2.
+
+One correction:
+- **Inez UPFC:** no source supports "test operation in May 1998". The shunt STATCOM stage entered service in 1997 and the UPFC was commissioned in mid-1998 (dedicated June 1998). The text now says this.
+
+## C. Figures
+
+All 42 figures were checked against their equations. Five were redrawn:
+- **Fig. 8.7(b):** the capacitive injection was drawn about 71° ahead of the current instead of 90°. It is now drawn to scale, with equal axes.
+- **Fig. 8.29 and Fig. 8.42:** box text overflowed the box borders.
+- **Fig. 8.35:** the y-axis label was cut off at both ends.
+- **Fig. 8.38:** crossing labels overlapped the curves, and the model parameters were missing. Both are now fixed.
+
+## D. Writing, structure and references
+
+- Removed the "UG path / PG study" labels.
+- Turned stacked disclaimers ("universal", "guarantee", "not proof", "honestly") into single, specific statements.
+- Rewrote the Example 8.15 solution so that it answers the question asked.
+- Smoothed the transition into Eq. (8.2) and the sentence after Eq. (8.9).
+- Made the run-in heading "Important topology distinctions." bold, consistent with the other run-in headings.
+- Six references ([9], [10], [14], [17], [25], [28] in the revised numbering) were listed but never cited. Each is now cited where it fits.
+- The eleven new references had been appended out of order. All 41 references are now renumbered in order of first citation, including the cross-reference inside the IEC 2026 entry.
+- Removed the em dash from the IPC reference title.
+- Fixed one OMML matrix element order so the file passes schema validation.
+
+The output .docx passes OOXML validation. The 61-page PDF rendering was inspected, including every page with a changed figure.
